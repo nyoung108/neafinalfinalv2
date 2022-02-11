@@ -161,7 +161,7 @@ public class UpcomingEventsPage extends javax.swing.JFrame {
     public UpcomingEventsPage() {
         initComponents();
         getEvent();
-        //dateSort();
+        dateSort();
     }
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
 

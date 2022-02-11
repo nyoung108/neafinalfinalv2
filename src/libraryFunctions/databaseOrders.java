@@ -642,14 +642,16 @@ public class databaseOrders {
             System.out.println(name);
             String sql = "Select date from app.eventtable where name = '" + name + "'";
             ResultSet rs = statement.executeQuery(sql);
+            while(rs.next()){
             String dateStr = rs.getString("date");
-            System.out.println(dateStr);
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yy");
             LocalDate date = LocalDate.parse(dateStr, dateFormatter);
-            System.out.println(dateStr);
+                System.out.println(date);
             rs.close();
             con.close();
             return date;
+            }
         } catch (Exception e) {
             System.out.println(e);
 

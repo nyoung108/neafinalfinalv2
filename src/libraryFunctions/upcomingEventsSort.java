@@ -124,8 +124,8 @@ public class upcomingEventsSort {
         while (leftPointer < left && rightPointer < right) {
 
             
-                System.out.println(databaseOrders.getDate(leftList[leftPointer]));
-                if (databaseOrders.getDate(leftList[leftPointer]).isBefore(databaseOrders.getDate(rightList[rightPointer++]))) {
+               
+                if (databaseOrders.getDate(leftList[leftPointer]).isBefore(databaseOrders.getDate(rightList[rightPointer]))) {
                     unsortedEvents[sortedPointer++] = leftList[leftPointer++];
                     
                 } else {
