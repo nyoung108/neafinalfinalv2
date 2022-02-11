@@ -253,12 +253,12 @@ public class databaseOrders {
 
     }
 
-    public static void seatsBooked(String stand, int eventID) {
+    public static void seatsBooked(int stand, int eventID) {
         ArrayList<String> seatsBooked = new ArrayList<>();
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT TICKETTABLE.seatID FROM app.ticketTABLE WHERE EXISTS (SELECT Untitled.seatID FROM app.untitled WHERE stand = '" + stand+ "') AND TICKETID.EVENTID =" + eventID;
+            String sql = "SELECT TICKETTABLE.seatID FROM app.ticketTABLE WHERE EXISTS (SELECT Untitled.seatID FROM app.untitled WHERE stand = " + stand+ ") AND TICKETID.EVENTID =" + eventID;
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 seatsBooked.add(rs.getString("seatID"));
@@ -277,7 +277,7 @@ public class databaseOrders {
             ArrayList<String> userList = new ArrayList<>();
             String hashedPassword = hash.hashedPassword(password);
             System.out.println(hashedPassword);
-            hashedPassword = hashedPassword.toLowerCase();
+            
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String sql = "select USERID from app.usertable where password= '" + hashedPassword + "' and email= '" + email + "'";
@@ -329,7 +329,7 @@ public class databaseOrders {
 
     }
 
-    public static String getEvent(String ticketID, String name) {
+    public static String getEvent(int ticketID, String name) {
 
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
@@ -460,18 +460,20 @@ public class databaseOrders {
         return null;
     }
 
-    public static int getSeatRow(String stand, int seatID) {
+    public static int getSeatRow(int stand, int seatID) {
 
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "Select row from app.untitled where stand='" + stand + "' AND seatID= " + seatID;
+            String sql = "Select row from app.untitled where stand= " + stand + " AND seatID= " + seatID;
             ResultSet rs = statement.executeQuery(sql);
+            while(rs.next()){
             int row = rs.getInt("row");
             rs.close();
             con.close();
             return row;
+            }
         } catch (Exception e) {
             System.out.println(e);
 
@@ -479,21 +481,23 @@ public class databaseOrders {
         return -1;
     }
 
-    public static int getSeatColumn(String stand, int seatID) {
+    public static int getSeatColumn(int stand, int seatID) {
 
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "Select columnnumber from app.untitled where stand='" + stand + "' AND seatID= " + seatID;
+            String sql = "Select columnnumber from app.untitled where stand=" + stand + " AND seatID= " + seatID;
             ResultSet rs = statement.executeQuery(sql);
-
-            int column = rs.getInt("coulmnnumber");
+            while(rs.next()){
+            int column = rs.getInt("columnnumber");
+            
             rs.close();
             con.close();
             return column;
+            }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e+"column number error");
 
         }
         return -1;
@@ -538,12 +542,12 @@ public class databaseOrders {
         return 0;
     }
 
-    public static String getSeatID(String stand, int row, int column) {
+    public static String getSeatID(int stand, int row, int column) {
 
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "Select seatID from app.untitled where stand = '" + stand + "' AND row = " + row + " AND columnnumber = " + column;
+            String sql = "Select seatID from app.untitled where stand = " + stand + " AND row = " + row + " AND columnnumber = " + column;
             ResultSet rs = statement.executeQuery(sql);
             String seatID = rs.getString("seatID");
             rs.close();
@@ -575,7 +579,7 @@ public class databaseOrders {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "INSERT INTO app.eventTABLE VALUES (" + music.getMusicID() + ", '" + music.getEventName() + "', '" + music.getEventType() + "', '" + music.getDate() + "', '" + music.getTime() + "', " + music.getEventPrice() + ")";
+            String sql = "INSERT INTO app.eventTABLE VALUES (" + music.getMusicID() + ", '" + music.getEventName() + "', '" + music.getEventType() + "', " + music.getEventPrice() + "', '" + music.getDate() + "', '" + music.getTime() + ")";
             statement.executeUpdate(sql);
             con.close();
         } catch (Exception e) {
@@ -603,7 +607,7 @@ public class databaseOrders {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
           
-            String sql = "INSERT INTO app.eventTABLE VALUES (" + sport.getSportID() + ", '" + sport.getEventName() + "', '" + sport.getEventType() + "', '" + sport.getDate() + "', '" + sport.getTime() + "', " + sport.getEventPrice() + ")";
+            String sql = "INSERT INTO app.eventTABLE VALUES (" + sport.getSportID() + ", '" + sport.getEventName() + "', '" + sport.getEventType() +"', " + sport.getEventPrice() + "', '" + sport.getDate() + "', '" + sport.getTime() +  ")";
             statement.executeUpdate(sql);
             con.close();
         } catch (Exception e) {
@@ -618,9 +622,9 @@ public class databaseOrders {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             int userID = currentUser.getUserID();
-            String sql = "Select count(bookingID) as ticketCount from app.bookingtable where userID = " + userID;
+            String sql = "Select count(bookingID) as total from app.bookingtable where userID = " + userID;
             ResultSet rs = statement.executeQuery(sql);
-            int numberOfTickets = rs.getInt("ticketCount");
+            int numberOfTickets = rs.getInt("total");
             rs.close();
             con.close();
             return numberOfTickets;
@@ -635,13 +639,14 @@ public class databaseOrders {
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/StadiumBookingDatabaseNea", "Noah", "password");
             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
-            String sql = "Select date from app.eventTable where name = '" + name + "'";
+            System.out.println(name);
+            String sql = "Select date from app.eventtable where name = '" + name + "'";
             ResultSet rs = statement.executeQuery(sql);
             String dateStr = rs.getString("date");
+            System.out.println(dateStr);
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate date = LocalDate.parse(dateStr, dateFormatter);
-
+            System.out.println(dateStr);
             rs.close();
             con.close();
             return date;

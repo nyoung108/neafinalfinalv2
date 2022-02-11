@@ -192,7 +192,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void standOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standOneActionPerformed
-        String standName = "4";
+        int standName = 1;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();
@@ -202,7 +202,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }//GEN-LAST:event_standOneActionPerformed
 
     private void standThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standThreeActionPerformed
-        String standName = "4";
+        int standName = 3;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();
@@ -212,7 +212,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }//GEN-LAST:event_standThreeActionPerformed
 
     private void standTwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standTwoActionPerformed
-        String standName = "4";
+        int standName = 2;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();
@@ -222,7 +222,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }//GEN-LAST:event_standTwoActionPerformed
 
     private void standFourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standFourActionPerformed
-        String standName = "4";
+        int standName = 4;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();
@@ -233,7 +233,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }//GEN-LAST:event_standFourActionPerformed
 
     private void standFiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standFiveActionPerformed
-        String standName = "4";
+        int standName = 5;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();
@@ -243,7 +243,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }//GEN-LAST:event_standFiveActionPerformed
 
     private void standSixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standSixActionPerformed
-        String standName = "4";
+        int standName = 6;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();
@@ -253,7 +253,7 @@ public class AvailableStands extends javax.swing.JFrame {
     }//GEN-LAST:event_standSixActionPerformed
 
     private void standSevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standSevenActionPerformed
-        String standName = "4";
+        int standName = 7;
         eventStringObject eventEntered = new eventStringObject(tempStand.getEvent(), tempStand.getType(), standName);
         ticket = eventEntered;
         availableSeats seats = new availableSeats();

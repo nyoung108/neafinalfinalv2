@@ -136,10 +136,11 @@ public class NewJFrame extends javax.swing.JFrame {
         int eventID = databaseOrders.getEventID(eventRequested);
         
         ArrayList<Integer> ticketIDSelected = new ArrayList<>();
-        for (int i = 0; i <= ticketID.size(); i++) {
+        
+        for (int i = 0; i < ticketID.size(); i++) {
             ticketIDSelected.add(databaseOrders.getTicketIDChosen(ticketID.get(i), eventID));
         }
-        for (int i = 0; i <= ticketIDSelected.size(); i++) {
+        for (int i = 0; i < ticketIDSelected.size(); i++) {
             
             int seatID = databaseOrders.getSeat(ticketIDSelected.get(i));
             

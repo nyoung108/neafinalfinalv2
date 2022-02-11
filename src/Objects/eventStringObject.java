@@ -12,9 +12,9 @@ package Objects;
 public class eventStringObject {
     private String event;
     private String type;
-    private String stand;
+    private int stand;
 
-    public eventStringObject(String event, String type, String stand) {
+    public eventStringObject(String event, String type, int stand) {
         this.event = event;
         this.type = type;
         this.stand = stand;
@@ -28,11 +28,11 @@ public class eventStringObject {
         this.type = type;
     }
 
-    public String getStand() {
+    public int getStand() {
         return stand;
     }
 
-    public void setStand(String stand) {
+    public void setStand(int stand) {
         this.stand = stand;
     }
     

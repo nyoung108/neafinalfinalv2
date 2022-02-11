@@ -14,7 +14,7 @@ public class upcomingEventsSort {
         String[] unsortedEvents = new String[size];
         for (int i = 0; i < size; i++) {
             unsortedEvents[i] = unsortedList.get(i);
-            System.out.println(unsortedEvents[i]);
+           
         }
         System.out.println("");
         int maxSize = unsortedEvents.length;
@@ -22,8 +22,15 @@ public class upcomingEventsSort {
                 splitListAZ(unsortedEvents, maxSize);
         }
        else if (sortRequested.equals("za")) {
+           ArrayList<String> sortedEvents = new ArrayList<>();
            splitListAZ(unsortedEvents, maxSize);
-            stack.reverseList(unsortedList);
+           for (int i = 0; i < unsortedEvents.length; i++) {
+
+            sortedEvents.add(unsortedEvents[i]);
+            
+
+        }
+            stack.reverseList(sortedEvents);
         }
        else if(sortRequested.equals("date")){
            splitListDate(unsortedEvents, maxSize);
@@ -117,7 +124,7 @@ public class upcomingEventsSort {
         while (leftPointer < left && rightPointer < right) {
 
             
-                
+                System.out.println(databaseOrders.getDate(leftList[leftPointer]));
                 if (databaseOrders.getDate(leftList[leftPointer]).isBefore(databaseOrders.getDate(rightList[rightPointer++]))) {
                     unsortedEvents[sortedPointer++] = leftList[leftPointer++];
                     

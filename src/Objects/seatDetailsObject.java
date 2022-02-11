@@ -5,10 +5,10 @@ public class seatDetailsObject {
     int seatID;
     int row;
     int column;
-    String Stand;
+    int Stand;
     double price;
 
-    public seatDetailsObject(int seatID, int row, int column, String Stand, double price) {
+    public seatDetailsObject(int seatID, int row, int column, int Stand, double price) {
         this.seatID = seatID;
         this.row = row;
         this.column = column;
@@ -40,11 +40,11 @@ public class seatDetailsObject {
         this.column = column;
     }
 
-    public String getStand() {
+    public int getStand() {
         return Stand;
     }
 
-    public void setStand(String Stand) {
+    public void setStand(int Stand) {
         this.Stand = Stand;
     }
 

@@ -4,7 +4,7 @@ package libraryFunctions;
 import java.text.DecimalFormat;
 
 public class ticketPriceGenerator {
-    public static double ticketPrice(int row, String stand, String event) {
+    public static double ticketPrice(int row, int stand, String event) {
         double rowPrice = rowPrice(row); 
         double standPrice = standPrice(stand); 
         double eventPrice = eventPrice(event); 
@@ -20,9 +20,9 @@ public class ticketPriceGenerator {
         double rowPrice = (15-row)/4;
         return rowPrice;
     }
-    public static double standPrice(String stand){
+    public static double standPrice(int standInt){
         double standPrice = 0;
-        int standInt = Integer.parseInt(stand);
+        
         if (standInt== 3){
             standPrice = 8.99; 
         }

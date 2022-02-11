@@ -25,8 +25,8 @@ public class availableSeats extends javax.swing.JFrame {
     public void getEvent() {
         tempSeat = AvailableStands.returnEvent();
     }
-    private ArrayList<Integer> seatsSelected;
-    private ArrayList<Integer> takenSeats;
+    private static ArrayList<Integer> seatsSelected;
+    
 
     public availableSeats() {
         initComponents();
@@ -149,7 +149,7 @@ public class availableSeats extends javax.swing.JFrame {
                 this.dispose();
         
     }//GEN-LAST:event_backButtonActionPerformed
-    private void getTakenSeats() {
+    private ArrayList<Integer> getTakenSeats(ArrayList<Integer> takenSeats) {
         ArrayList<Integer> seatIDs = new ArrayList<>();
         System.out.println(tempSeat.getEvent());
         
@@ -159,7 +159,10 @@ public class availableSeats extends javax.swing.JFrame {
         
         if(seatIDs.size()>0){
         for (int i = 0; i < seatIDs.size(); i++) {
+            
             int seatID = seatIDs.get(i);
+            System.out.println(seatID);
+            System.out.println(tempSeat.getStand());
             int row = databaseOrders.getSeatRow(tempSeat.getStand(), seatID);
             int column = databaseOrders.getSeatColumn(tempSeat.getStand(), seatID);
             int seat = row * column;
@@ -168,16 +171,18 @@ public class availableSeats extends javax.swing.JFrame {
         } else{
             System.out.println("false");
         }
+        return takenSeats;
     }
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
        try{
-        boolean valid = validSeats();
+        
         String rowString = new String(rowField.getText());
         String columnString = new String(columnField.getText());
         int rowEntered = Integer.parseInt(rowString);
         int columnEntered = Integer.parseInt(columnString);
         int seatInt = rowEntered*columnEntered;
         seatsSelected.add(seatInt);
+        boolean valid = validSeats();
         if (valid) {
             for (int i = 0; i < seatsSelected.size(); i++) {
 
@@ -186,13 +191,14 @@ public class availableSeats extends javax.swing.JFrame {
                 int eventID = databaseOrders.getEventID(tempSeat.getEvent());
                 String rowStr = Integer.toString(row);
                 String columnStr = Integer.toString(column);
-                String seatID = String.join(tempSeat.getStand(), rowStr, columnStr);
+                String standStr = Integer.toString(tempSeat.getStand());
+                String seatID = String.join(standStr, rowStr, columnStr);
                 int seatIDInt = Integer.parseInt(seatID);
                 double addedPrice = ticketPriceGenerator.rowPrice(row);
-                seatDetailsObject seat = new seatDetailsObject(seatIDInt, row, column, tempSeat.getEvent(), addedPrice);
+                seatDetailsObject seat = new seatDetailsObject(seatIDInt, row, column, tempSeat.getStand(), addedPrice);
                 databaseOrders.addSeat(seat);
                 
-                double price = ticketPriceGenerator.ticketPrice(row, tempSeat.getEvent(), tempSeat.getStand());
+                double price = ticketPriceGenerator.ticketPrice(row, tempSeat.getStand(), tempSeat.getEvent());
                 int ticketID = databaseOrders.generateTicketID();
                 int bookingID = databaseOrders.generateBookingID();
                 int userID = databaseOrders.returnUserID();
@@ -216,9 +222,11 @@ public class availableSeats extends javax.swing.JFrame {
        
     }//GEN-LAST:event_confirmButtonActionPerformed
     private boolean validSeats() {
-        
-        getTakenSeats();
-        
+        ArrayList<Integer>  takenSeats = new ArrayList<>();
+        takenSeats = getTakenSeats(takenSeats);
+        for (int i = 0; i < takenSeats.size(); i++) {
+            System.out.println(takenSeats.get(i));
+        }
         boolean valid = true;
         ArrayList<Integer> userTickets = new ArrayList<>();
         ArrayList<Integer> ticketsBookedForEvent = new ArrayList<>();

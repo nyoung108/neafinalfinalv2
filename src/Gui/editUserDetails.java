@@ -213,8 +213,7 @@ public class editUserDetails extends javax.swing.JFrame {
                     System.out.println("Password incorrect format");
                     updateUser = false;
                 } else {
-                    password = hash.hashedPassword(password);
-                    databaseOrders.updatePassword(password);
+                    
                 }
             }
             String firstName = firstNameEntered.getText();
@@ -234,7 +233,7 @@ public class editUserDetails extends javax.swing.JFrame {
                 System.out.println("Your last name is not in the correct format");
                 updateUser = false;
             } else{
-                databaseOrders.updateLastName(password);
+                
             }
             }
             String dateStr = dateOfBirthEntered.getText();
@@ -243,7 +242,7 @@ public class editUserDetails extends javax.swing.JFrame {
                 System.out.println("Your date of birth is not in the correct format (dd/MM/yy)");
                 updateUser = false;
             } else{
-                databaseOrders.updateLastName(dateStr);
+               
             }
             
             
@@ -252,7 +251,7 @@ public class editUserDetails extends javax.swing.JFrame {
                  databaseOrders.updateLastName(lastName);
                  databaseOrders.updateFirstName(firstName);
                  databaseOrders.updatePassword(password);
-                 databaseOrders.updateLastName(dateStr);
+                 databaseOrders.updateDate(dateStr);
                 HomePage home = new HomePage();
                 
                 home.setVisible(true);

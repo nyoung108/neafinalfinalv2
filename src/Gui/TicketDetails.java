@@ -124,7 +124,7 @@ public class TicketDetails extends javax.swing.JFrame {
 
     private void standardTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardTicketActionPerformed
         String ticketSelected = "standard";
-        eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, null);
+        eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, 0);
             ticket = eventEntered;
         
         AvailableStands availableStands = new AvailableStands();
@@ -139,7 +139,7 @@ public class TicketDetails extends javax.swing.JFrame {
 
     private void vipTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vipTicketActionPerformed
        String ticketSelected = "vip";
-       eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, null);
+       eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, 0);
             ticket = eventEntered;
         AvailableStands availableStands = new AvailableStands();
         
@@ -150,7 +150,7 @@ public class TicketDetails extends javax.swing.JFrame {
 
     private void disabledTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disabledTicketActionPerformed
        String ticketSelected = "disabled";
-        eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, null);
+        eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, 0);
             ticket = eventEntered;
         AvailableStands availableStands = new AvailableStands();
         
@@ -161,7 +161,7 @@ public class TicketDetails extends javax.swing.JFrame {
 
     private void childTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_childTicketActionPerformed
        String ticketSelected = "child";
-        eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, null);
+        eventStringObject eventEntered = new eventStringObject(tempTicket.getEvent(), ticketSelected, 0);
             ticket = eventEntered;
         AvailableStands availableStands = new AvailableStands();
         

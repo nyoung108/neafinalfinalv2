@@ -187,7 +187,7 @@ public class UpcomingEventsPage extends javax.swing.JFrame {
             }
         }
         if(valid){
-            eventStringObject eventEntered = new eventStringObject(eventRequest, null, null);
+            eventStringObject eventEntered = new eventStringObject(eventRequest, null, 0);
             event = eventEntered;
         TicketDetails ticketDetails = new TicketDetails();
 
